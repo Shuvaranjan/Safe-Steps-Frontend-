@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Steps - Admin Dashboard</title>
+    <link rel="icon" href="./assets/images/Safe-Steps (Favicon).webp">
+
+
+    <!-- material icons library -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+
+
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="CSS/admin_panel.css">
+</head>
+
+<body class="light-theme">
+
+    <!-- mouse follower -->
+    <div id="cursor"></div>
+
+    <div class="container">
+        <aside>
+            <div class="top">
+                <div class="close" id="colse-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+                <div class="logo">
+                    <img src="./assets/images/Safe_step.webp" alt="safe_steps!">
+                    <h2>SAFE<span class="safety">STEPS</span></h2>
+                </div>
+
+            </div>
+
+            <div class="sidebar">
+                <a href="#" class="menu-item active" onclick="showSection('dashboard')">
+                    <span class="material-icons-sharp">dashboard</span>
+                    <h3>Dashboard</h3>
+                </a>
+                <a href="#" class="menu-item" onclick="showSection('members')">
+                    <span class="material-icons-sharp">group</span>
+                    <h3>Members</h3>
+                </a>
+                <a href="#" class="menu-item" onclick="showSection('messages')">
+                    <span class="material-icons-sharp">mail</span>
+                    <h3>Messages</h3>
+
+                    <!-- add messages  -->
+                    <span class="message-count">26</span>
+                </a>
+                <a href="#" class="menu-item" onclick="showSection('chart_Section')">
+                    <span class="material-icons-sharp">analytics</span>
+                    <h3>Analytics</h3>
+                </a>
+
+                <a href="index03.html">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>SignOut</h3>
+                </a>
+            </div>
+        </aside>
+        <!-- END of aside -->
+
+        <main>
+            <div class="top">
+                <h1 class="header-title">Hello, Rishi</h1>
+                <div class="date-time">
+                    <h1 id="current-date"></h1>
+                    <h1 id="current-time"></h1>
+                </div>
+            </div>
+
+            <div class="main-content">
+
+                <!-- Dashboard Section -->
+                <div id="dashboard" class="content-section active">
+                    <h3 class="section-title">Dashboard Overview</h3>
+                    <div class="stats">
+                        <div class="stat-card">
+                            <p>Total Members</p>
+                            <h3>0</h3>
+                        </div>
+                        <div class="stat-card">
+                            <p>Unread Messages</p>
+                            <h3>0</h3>
+                        </div>
+                    </div>
+                    <div class="activity">
+                        <h4>Recent Activity</h4>
+                        <ul>
+                            <li>New member registered (John Doe)</li>
+                            <li>Review submitted (Rating: 4/5)</li>
+                            <li>Message received from Jane Smith</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Members Section -->
+                <div id="members" class="content-section">
+                    <h3 class="section-title">Manage Members</h3>
+                    <div class="button-view">
+                        <button class="btn btn-primary" id="addMember" onclick="showSection('new-member')">
+                            Add New Member
+                        </button>
+                        <button class="btn btn-primary" id="addMember" onclick="showSection('showMap')">
+                            Map
+                        </button>
+                    </div>
+                    <div class="table-scrollbar">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Ph.</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Koyel Datta</td>
+                                    <td>koyel@example.com</td>
+                                    <td>8949635002</td>
+                                    <td>Active</td>
+                                    <td>
+                                        <button class="btn btn-primary">Edit</button>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Mondira Bannerjee</td>
+                                    <td>mondira@example.com</td>
+                                    <td>78549634002</td>
+                                    <td>Inactive</td>
+                                    <td>
+                                        <button class="btn btn-primary">Edit</button>
+                                        <button class="btn btn-danger">Delete</button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <!-- add new members -->
+                <div id="new-member" class="content-section">
+                    <h3 class="section-title">Add Members</h3>
+                    <form class="member-form" id="addMemberForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Email</label>
+                                <input type="email" id="email" name="firstName" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fullName">Full Name</label>
+                                <input type="text" id="fullName" name="lastName" placeholder="Enter your name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="number">Ph Number</label>
+                                <input type="number" id="number" name="number" placeholder="Enter your number" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profile_pic">Profile Picture</label>
+                                <input type="file" id="profile_pic" name="profile_pic" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" placeholder="Enter Password"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword"
+                                    placeholder="Enter Confirm Password" required>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="showSection('members')">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                Save Member
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Add user and member maps -->
+                <div id="showMap" class="content-section">
+                    <h3 class="section-title">Current Locations</h3>
+                    <div class="locationDiv">
+                        <div class="map">
+                            <div class="location" id="LUser">
+                                <div id="userMap"></div>
+                                <h2>User Location</h2>
+                            </div>
+                            <span class="material-icons-sharp connect">
+                                sync_alt
+                            </span>
+                            <div class="location" id="LMember">
+                                <div id="memberMap"></div>
+                                <h2>Member Location</h2>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+
+                <!-- Messages Section -->
+                <div id="messages" class="content-section">
+                    <h3 class="section-title">Messages</h3>
+                    <div>
+                        <button class="btn btn-primary">Inbox (12)</button>
+                        <button class="btn">Archived</button>
+                        <!-- <button class="btn">Spam</button> -->
+                    </div>
+
+                    <div class="table-scrollbar">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>From</th>
+                                    <th>Subject</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>Issue with my account</td>
+                                    <td>2023-10-20</td>
+                                    <td>
+                                        <button class="btn btn-primary">Reply</button>
+                                        <button class="btn">Archive</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>Issue with my account</td>
+                                    <td>2023-10-20</td>
+                                    <td>
+                                        <button class="btn btn-primary">Reply</button>
+                                        <button class="btn">Archive</button>
+                                    </td>
+                                </tr>
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Chart Section-->
+                <div id="chart_Section" class="content-section">
+                    <h3 class="section-title">Total Pickup/Drop Locations</h3>
+                    <div class="chart_Container" id="doughnut-chart">
+                            <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- END OF MAIN -->
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p><b>Rishi</b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="./assets/images/Safe_step.webp" alt="error!">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="JavaScript/admin_panel.js"></script>
+
+    <!-- Import Chart.js cdn -->
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   <script src="JavaScript/chart.js"></script>
+
+</body>
+
+</html>

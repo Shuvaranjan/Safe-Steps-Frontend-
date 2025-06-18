@@ -1,0 +1,438 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Knewave&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Coiny&display=swap'); */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Knewave", sans-serif;
+    user-select: none;
+    cursor: none;
+}
+
+@font-face {
+    font-family: Knewave;
+    src: url('../assets/Fonts/Knewave-Regular.ttf');
+}
+
+
+#cursor{
+    /* transition: all 5ms linear; */
+    background: rgba(255, 255, 255, 0.461);
+    backdrop-filter: blur(50px);
+    position: fixed;
+    height: 40px;
+    width: 40px;
+    border: none;
+    box-shadow: 0 0 35px white,
+        inset 0 0 15px white;
+    border-radius: 100%;
+    top: calc((55px/2)* -1);
+    left: calc((55px/2)* -1);
+    align-items: center;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+
+/* Landing Page */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.background-img {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    background-size: cover;
+}
+
+body{overflow: hidden;}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.559);
+    z-index: 0;
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(15px);
+    z-index: 1000;
+    display: none;
+}
+
+
+.textPan {
+    margin-top: 1.2em;
+    width: 100%;
+    /* max-width: 1200px; */
+    /* Maximum width */
+    height: auto;
+    padding: 0 2em;
+}
+
+
+
+.textPan h2 {
+    margin-top: 25px;
+    font-size: 15vw;
+    font-family: "Knewave", system-ui;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.765);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    line-height: 1em;
+    opacity: 0;
+    animation: fadeInDown 2.5s ease-in-out forwards;
+    animation-delay: 0.5s;
+}
+
+/* Fade-in animation for the "Safe Step" text */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.textPan p {
+    width: 70%;
+    /* word-spacing: 5px; */
+    letter-spacing: 5px;
+    /* background-color: #d12d00; */
+    font-family: "Knewave", system-ui;
+    font-size: 2.5em;
+    /* Adjusted for responsiveness */
+    color: #ffffff48;
+}
+
+.textPan .para p {
+    opacity: 0;
+    /* Start with text hidden */
+    animation: fadeInUp 2.5s ease-in-out forwards;
+    /* Apply the fade-in animation */
+    animation-delay: 0.8s;
+    /* Delay the animation to sync with other elements */
+}
+
+.textPan .para {
+    padding-right: 0;
+    /* Adjusted for responsiveness */
+    margin: 1em 0 1em 0;
+}
+
+
+
+/* button Styling */
+button 
+{
+    --color: #d12d00;
+    font-family: inherit;
+    display: inline-block;
+    width: 8em;
+    height: 2.6em;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border: 2px solid var(--color);
+    transition: color 0.5s;
+    z-index: 1;
+    font-size: 17px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: var(--color);
+}
+
+button:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    background: var(--color);
+    height: 150px;
+    width: 200px;
+    border-radius: 50%;
+}
+
+button:hover {
+    color: #fff;
+    box-shadow: 0 0 20px rgb(255, 255, 255);
+}
+
+
+
+button:before {
+    top: 100%;
+    left: 100%;
+    transition: all 0.7s;
+}
+
+button:hover:before {
+    top: -30px;
+    left: -30px;
+}
+
+button:active:before {
+    background: #d12d00;
+}
+
+/* Add slide-in animation for the button */
+@keyframes slideInFromLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100%);
+        /* Start off-screen to the left */
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        /* Move to its original position */
+    }
+}
+
+.btn {
+    /* background: red; */
+    /* max-width: 1800px; */
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.btn button {
+    opacity: 0;
+    /* Start with button hidden */
+    animation: fadeInUp 1.9s ease-in-out forwards;
+    /* Apply the fade-in animation */
+    animation-delay: 2s;
+    /* Delay the animation by 1s to sync with other elements */
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+button.slide-out {
+    animation: slideOut 0.5s ease-in-out forwards;
+}
+
+
+
+
+/*  */
+
+/* */
+
+
+/* Admin & Member view */
+.background #adminView {
+    width: 30%;
+    height: 50%;
+    background: rgba(255, 255, 255, 0.667);
+    backdrop-filter: blur(15px);
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 25px;
+    animation: fadeIn2 0.5s linear;
+}
+.background .image {
+    width: 300px;
+}
+.background img{
+    width: 100%;
+}
+
+@keyframes fadeIn2 {
+    from {
+        opacity: 0;
+        transform: translateY(-35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#adminView .close{
+    /* font-weight: 500; */
+    /* font-weight: bold; */
+    font-size: 15px;
+    color: #ffffff;
+    background-color: #d12d00;
+    border-radius: 50%;
+    padding: 6px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+
+#adminView .view {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 5%;
+    gap: 55px;
+
+}
+
+.view a {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    padding: 15px;
+    background-color: rgb(255, 166, 0);
+    border: 2px solid rgb(255, 255, 255, 0.55);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.605), 0 0 5px white;
+    /* backdrop-filter: blur(85px); */
+    border-radius: 5px;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 250;
+    transition: all 0.5s ease;
+}
+.view a:hover{
+    background-color: rgba(234, 234, 234, 0.676);
+    border: 2px solid rgb(255, 166, 0);
+}
+
+
+
+/* Responsive design */
+@media (max-width: 480px) {
+
+    #cursor{
+        display: none;
+    }
+
+    .btn{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 12em;
+        /* flex-direction: column; */
+        gap: 10px;
+    }
+    #adminView{
+        max-width: 380px;
+        margin: 15px;
+        top: 0;
+        left: 0;
+    }
+    .background-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .textPan {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .textPan h2 {
+        margin-top: 2em;
+        font-size: 18vw;
+        /* Adjusted for smaller screens */
+        line-height: 1.2em;
+    }
+
+    .textPan p {
+        font-size: 7vw;
+        /* Adjusted for smaller screens */
+        width: 100%;
+    }
+
+    .textPan .para {
+        padding-right: 0;
+        /* Adjusted for smaller screens */
+    }
+
+    button {
+        font-size: 14px;
+        /* Adjusted font size */
+        margin-top: 1em;
+        width: 150px;
+        word-spacing: 0.2em;
+
+    }
+
+    .textPan {
+        margin-top: 50%;
+    }
+
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #cursor{
+        display: none;
+    }
+    .textPan {
+        padding: 0 1em;
+        height: 80vh;
+        margin-top: 10vh;
+    }
+
+    .textPan h2 {
+        letter-spacing: 3px;
+        line-height: 1.2;
+    }
+
+    .textPan .para {
+        margin: 1rem 0;
+    }
+
+    button {
+        width: 8em;
+        height: 2.6em;
+    }
+}

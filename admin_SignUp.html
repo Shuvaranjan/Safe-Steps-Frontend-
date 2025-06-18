@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Steps - Admin Panel</title>
+    <link rel="icon" href="./assets/images/Safe-Steps (Favicon).png">
+    <link rel="stylesheet" href="css/admin_signUp.css">
+    <!-- libraries -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
+</head>
+<body>
+    <div id="cursor"></div>
+
+    <div class="container">
+        <!-- Left Banner Content -->
+        <div class="banner">
+            <div class="slide">
+                <img src="./assets/images/Safe_step.webp" alt="safe-steps!">
+            </div>
+        </div>
+        
+        <!-- Right Sign-In Panel -->
+        <div class="signUp-panel">
+            <div class="signUp-container">
+                <div class="signUp-header">
+                    <div class="logo">
+                        <!-- When open to android/ios  -->
+                        <img src="./assets/images/Safe_step.webp" alt="safe-steps_logo!">
+                    </div>
+                    <h2>Admin Sign Up</h2>
+                </div>
+                
+                <form class="signUp-form">
+                    <div class="form-group">
+                        <label for="email">*Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="text">*Full Name</label>
+                        <input type="text" id="texr" placeholder="Enter your Full Name" autocomplete="off" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="photo">Profile Picture</label>
+                        <input type="file" accept="image/*" id="photo">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">*Password</label>
+                        <div class="form-group-input">
+                            <input type="password" id="password" placeholder="Enter your password"
+                                onkeyup="checkPasswordStrength()" required>
+                            <i class="fa-solid fa-eye-slash toggle-password" onclick="togglePassword(this)"></i>
+                        </div>
+                        
+                        <div class="indicator">
+                            <span class="weak"></span>
+                            <span class="medium"></span>
+                            <span class="strong"></span>
+                        </div>
+                        <div class="text">Password Strength</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="rePassword">*Confirm Password</label>
+                        <input type="password" id="rePassword" placeholder="Enter your confirm password"  onkeyup="matchPassword()" autocomplete="off" required>
+
+                        <div class="text2">Check Password!</div>
+
+                    </div>
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember">
+                            <label for="remember">Remember me</label>
+                        </div>
+                    <button type="submit" class="signUp-btn">Sign Up</button>
+                    <div class="register-link">
+                        <p>Already have an account? <a href="index03.html">Sign in now</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="JavaScript/admin_SignUp.js" defer></script>
+
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Steps | Women Safety Org</title>
+    <link rel="stylesheet" href="CSS/landing.css">
+    <link rel="icon" href="./assets/images/Safe-Steps (Favicon).png">
+    <!-- Replace the Font Awesome link with this -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        crossorigin="anonymous">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@600&family=Roboto+Condensed:wght@700&family=Oswald:wght@600&family=Lato:wght@400&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div id="cursor"></div>
+    <div class="background" id="background">
+        <div id="adminView">
+                <i class="fa-solid fa-close close"></i>
+            <div class="view">
+                <a href="index03.html" id="adminPanel">Admin</a>
+                <a href="index02.html" id="memberspanel">Member</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Background image using img tag -->
+    <div class="background-container">
+        <img class="background-img" src="./assets/images/dark.webp" alt="Background">
+    </div>
+
+    <!-- Dark overlay -->
+    <div class="overlay"></div>
+
+    <!-- blur background -->
+
+
+    <div class="textPan">
+        <h2> <span id="word1">safe</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id="word2">steps!</span></h2>
+        <div class="para">
+            <p>"Every Steps Matter's, with safe steps You are never alone"</p>
+        </div>
+        <div class="btn">
+            <button type="submit" id="nextPageButton">
+                Get Started <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <button type="submit" id="adminPageButton">
+                Admin
+            </button>
+        </div>
+    </div>
+
+
+
+    <script>
+        // Simple script to check for extension conflicts
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Page loaded successfully');
+
+            // If you're using any async operations, ensure they complete
+            const loadFontAwesome = () => {
+                return new Promise((resolve) => {
+                    if (document.fonts && document.fonts.ready) {
+                        document.fonts.ready.then(resolve);
+                    } else {
+                        setTimeout(resolve, 1000);
+                    }
+                });
+            };
+
+            loadFontAwesome().then(() => {
+                console.log('All assets loaded');
+            });
+        });
+
+        document.getElementById('nextPageButton').addEventListener('click', function () {
+            window.location.href = "user_SignIn.html";
+        });
+        document.getElementById('adminPageButton').addEventListener('click', function () {
+            const adminSection = document.getElementById('adminView');
+            const background = document.getElementById('background');
+            const close = document.querySelector('.close');
+            adminSection.style.display = 'block';
+            background.style.display = 'flex';
+
+            background.addEventListener('click', function () {
+                adminSection.style.display = 'none';
+                background.style.display = 'none';
+
+            })
+            close.addEventListener('click', function () {
+                adminSection.style.display = 'none';
+                background.style.display = 'none';
+
+            })
+
+        });
+
+
+        // Mouse Follower
+        document.addEventListener('DOMContentLoaded', () => {
+            const circleElement = document.getElementById('cursor');
+
+            // Only proceed if the cursor element exists
+            if (!circleElement) {
+                console.error('Cursor element not found');
+                return;
+            }
+
+            const mouse = { x: 0, y: 0 };
+            const previousMouse = { x: 0, y: 0 };
+            const circle = { x: 0, y: 0 };
+            let currentScale = 0;
+            let animationFrameId = null;
+
+            // Set initial position to avoid jumping from (0,0)
+            const initCursorPosition = () => {
+                circle.x = mouse.x;
+                circle.y = mouse.y;
+                circleElement.style.transform = `translate(${circle.x}px, ${circle.y}px)`;
+            };
+
+            const handleMouseMove = (e) => {
+                mouse.x = e.clientX; // Use clientX/Y for consistency
+                mouse.y = e.clientY;
+            };
+
+            const speed = 0.17;
+            const maxSqueeze = 0.5; // Maximum squeeze amount
+            const maxVelocity = 100; // Pixels per frame to reach max squeeze
+
+            const tick = () => {
+                // Smooth follow effect
+                circle.x += (mouse.x - circle.x) * speed;
+                circle.y += (mouse.y - circle.y) * speed;
+
+                // Calculate mouse velocity
+                const deltaMouseX = mouse.x - previousMouse.x;
+                const deltaMouseY = mouse.y - previousMouse.y;
+                previousMouse.x = mouse.x;
+                previousMouse.y = mouse.y;
+
+                // Calculate scale based on velocity
+                const mouseVelocity = Math.min(
+                    Math.sqrt(deltaMouseX ** 2 + deltaMouseY ** 2) * 4,
+                    maxVelocity
+                );
+                const scaleValue = (mouseVelocity / maxVelocity) * maxSqueeze;
+
+                // Smooth scale transition
+                currentScale += (scaleValue - currentScale) * speed;
+
+                // Apply transformations
+                circleElement.style.transform = `
+            translate(${circle.x}px, ${circle.y}px)
+            scale(${1 + currentScale}, ${1 - currentScale})
+        `;
+
+                animationFrameId = requestAnimationFrame(tick);
+            };
+
+            const startAnimation = () => {
+                window.addEventListener('mousemove', handleMouseMove);
+                initCursorPosition();
+                tick();
+            };
+
+            const stopAnimation = () => {
+                window.removeEventListener('mousemove', handleMouseMove);
+                if (animationFrameId) {
+                    cancelAnimationFrame(animationFrameId);
+                }
+            };
+
+            // Start the animation
+            startAnimation();
+
+            // Clean up if needed (for SPAs or when removing the cursor)
+            // return stopAnimation;
+        });
+
+    </script>
+
+</body>
+
+</html>
